@@ -1,0 +1,128 @@
+/* Title */
+#iphoneFrame {
+	width: 375px;
+	height: 812px;
+	overflow: hidden;
+}
+ 
+	body {
+		background: linear-gradient(#96C93D, #00B09B);
+	}
+	/* Rectangle */
+	#getStartedButton {
+		background: rgb(239, 237, 237);
+		border-radius: 100px;
+		box-shadow: rgba(0, 0, 0, 0.25) 0px 4px 4px 0px;
+		left: 87px;
+		width: 200px;
+		top: 687px;
+		height: 50px;
+	}
+ 
+	/* Get Started */
+	#buttonText {
+		font-family: "Gothic A1";
+		font-size: 14px;
+		font-weight: 800;
+		letter-spacing: 0px;
+		color: rgb(0, 0, 0);
+		vertical-align: middle;
+		text-align: center;
+		justify-content: center;
+		width: 80px;
+		transform: translate(0px, 0px);
+		line-height: 16.4063px;
+		height: 18px;
+		left: 147px;
+		top: 707px;
+	}
+ 
+	/* Lorem ipsum dolor sit amet, consectetur adipiscing elit */
+	#flavorText {
+		font-family: "Gothic A1";
+		font-size: 14px;
+		font-weight: 400;
+		letter-spacing: 0px;
+		color: rgb(255, 255, 255);
+		vertical-align: middle;
+		text-align: center;
+		justify-content: center;
+		width: 276px;
+		line-height: 16.4063px;
+		height: 61px;
+		left: 49px;
+		top: 592px;
+	}
+ 
+	/* Grosh */
+	#mainTitle {
+		font-family: "Gothic A1";
+		font-size: 64px;
+		font-weight: 800;
+		letter-spacing: 0px;
+		color: rgb(255, 255, 255);
+		vertical-align: middle;
+		text-align: center;
+		justify-content: center;
+		width: 186px;
+		line-height: 75px;
+		height: 80px;
+		text-shadow: 2px 2px  rgba(0, 0, 0, 0.25);
+		left: 94px;
+		top: 99px;
+	}
+ 
+	/* 59bedb177a216d0b052f128a 1 */
+	#centerImage {
+		background-image: url("./assets/groceryCart.png");
+		background-size: cover;
+		background-repeat: no-repeat;
+		background-position: center center;
+		left: 36px;
+		width: 301px;
+		top: 219px;
+		height: 308px;
+	}
+	#loginForm {
+		z-index: 999;
+		font-family: "Gothic A1";
+		font-size: 14px;
+		font-weight: 800;
+		letter-spacing: 0px;
+		color: rgb(0, 0, 0);
+		left: 36px;
+		width: 301px;
+		top: 219px;
+		height: 308px;
+	}
+	input {
+		padding-left: 20px;
+		margin-top: 10px;
+		width: 100%;
+		height: 40px;
+		border-radius: 15px;
+		border-width: 0px;
+
+	}
+
+	html, body { 
+		margin:0; 
+		height: 100%; 
+	}
+body {
+	display: flex; 
+	align-items: center; 
+	justify-content: center;
+}
+body > .component, body > .frame { 
+	left: auto;
+	right: auto; 
+	top: auto;
+	 bottom:auto;
+	}s
+body > .frame {
+	background: rgb(255, 255, 255);
+}
+	#loginItem {
+		margin-top: 50px;
+	}
