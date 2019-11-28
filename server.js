@@ -51,7 +51,12 @@ app.get(`/img/${imgFile}`, function(req,res){
     res.end();
 });
 
-
+app.get('/login',function(req,res){
+    var context = {};
+    context.title = 'Login page';
+    context.script = ['login.js'];
+    res.render('login',context);
+});
 app.post('/login',function(req,res){
     let context = {};
     let sql = `SELECT username,password FROM users WHERE username=?`;
