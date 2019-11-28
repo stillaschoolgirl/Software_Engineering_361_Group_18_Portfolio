@@ -74,7 +74,7 @@
  
 	/* 59bedb177a216d0b052f128a 1 */
 	#centerImage {
-		background-image: url("./assets/groceryCart.png");
+		background-image: url("../../views/assets/groceryCart.png");
 		background-size: cover;
 		background-repeat: no-repeat;
 		background-position: center center;
