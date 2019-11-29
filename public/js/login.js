@@ -1,11 +1,12 @@
 document.addEventListener('DOMContentLoaded',() =>{
-    document.getElementById('loginButton').addEventListener('click',async () =>{
+    document.getElementById('loginButton').addEventListener('click',async event =>{
+	event.preventDefault();
 	let context = {};
 	context.username = document.getElementById('username').value;
 	context.password = document.getElementById('password').value;
 
 	try{
-	    const response = await fetch('/login', {
+	    let response = await fetch('/login', {
 		method: 'POST',
 		mode: 'cors',
 		cache: 'no-cache',
@@ -22,7 +23,7 @@ document.addEventListener('DOMContentLoaded',() =>{
 	    
 	    if(response.invalidCredentials){
 		let feedback = document.getElementById('feedbackDiv');
-		feedback.style.color = red;
+		feedback.style.color = "red";
 		feedback.innerText = "Invalid login. Please try again.";
 	    }
 	}

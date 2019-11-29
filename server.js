@@ -62,8 +62,8 @@ app.post('/login',function(req,res){
     let sql = `SELECT username,password FROM users WHERE username=?`;
     let values = req.body.username;
     
-    mysql.pool(sql,values,results => {
-	if(results[0] && results[0].password === req.body.password)
+    mysql.pool.query(sql,values,results => {
+	if(results && results[0] && results[0].password === req.body.password)
 	    res.render('landingPage');
 	else{
 	    context.invalidCredentials = true;
