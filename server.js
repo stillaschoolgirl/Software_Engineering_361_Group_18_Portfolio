@@ -13,9 +13,9 @@ let hbs = require('express-handlebars').create({
     layoutDir: `${__dirname}/views/layouts`,
     partialsDir: `${__dirname}/views/partials`
 });
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-
 app.use(session({
     secret: 'password',
     resave: false,
@@ -27,10 +27,8 @@ app.use(session({
         httpOnly: true,
         maxAge: 600 * 100000
     }
-
 }));
 app.use(express.static('public'));
-
 app.engine('hbs', hbs.engine);
 app.set('view engine', 'hbs');
 app.set('port', 10001);
@@ -62,6 +60,7 @@ app.get('/login',function(req,res){
     context.script = ['login.js'];
     res.render('login',context);
 });
+
 app.post('/login',function(req,res){
     let context = {};
     let sql = `SELECT username,password FROM users WHERE username=?`;
@@ -70,7 +69,7 @@ app.post('/login',function(req,res){
     mysql.pool.query(sql,values,(err,results) => {
 
 	if(results && results[0] && results[0].password === req.body.password){
-	    res.render('storeSearch');
+	    res.redirect('/storeSearch');
 	}
 	else{
 	    context.invalidCredentials = true;
@@ -79,7 +78,7 @@ app.post('/login',function(req,res){
     });
 });
 
-app.get('/searchStores', function(req, res){
+app.get('/storeSearch', function(req, res){
 	var context = {};
 	res.render('storeSearch', context);
 });
