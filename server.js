@@ -77,6 +77,11 @@ app.post('/login',function(req,res){
     });
 });
 
+app.get('/searchStores', function(req, res){
+	var context = {};
+	res.render('storeSearch', context);
+});
+
 app.use(function(req,res){
   res.status(404);
   res.render('404');
