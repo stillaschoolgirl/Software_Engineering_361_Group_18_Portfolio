@@ -63,11 +63,13 @@ app.get('/login',function(req,res){
     res.render('login',context);
 });
 app.post('/login',function(req,res){
+    console.log(req.body.username);
     let context = {};
     let sql = `SELECT username,password FROM users WHERE username=?`;
     let values = req.body.username;
-    
-    mysql.pool.query(sql,values,results => {
+
+    mysql.pool.query(sql,values,(err,results) => {
+
 	if(results && results[0] && results[0].password === req.body.password)
 	    res.render('landingPage');
 	else{
