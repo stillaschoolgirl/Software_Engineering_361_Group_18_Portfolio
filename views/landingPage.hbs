@@ -1,0 +1,62 @@
+<!--
+    <!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <title>Grosh</title>
+    <link rel="stylesheet" type="text/css" href="https://ui-kit.co/figma2html/dist/layout.css?v=2">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Gothic A1:800,400">
+    <link rel="stylesheet" href="../public/css/style.css">
+    <script>
+      function submitForm() {
+      document.getElementById("form_id").submit();// Form submission
+      }
+    </script>
+
+  </head>
+  -->
+<div id="landingPage">
+	This is the landing page
+  <form id="form_id">
+    <br>
+    <div id="feedbackDiv"></div>
+    <div id="searchItem">
+      Search For Store:
+      <input type="text" name="storeName" id="storeName">
+    </div>
+	<div id="searchItem">
+      In City:
+      <input type="text" name="cityName" id="cityName">
+    </div>
+    <div id="searchItem">
+      Submit:
+      <input type="submit" name="searchStore" id="searchStore" value="Submit">
+    </div>
+  </form>
+  <div id="return store">
+	<h3>Stores to Select:</h3>
+	<ul>
+		{{#each queryList}}
+			<li>Name: {{this.name}} Value: {{this.value}}</li>
+		{{/each}}
+	</ul>
+  </div>
+</div>
+
+<!-- partial:index.partial.html -->
+<!-- Title -->
+<div class="left top component" id="iphoneFrame">
+  <!-- Rectangle -->
+  <div class="left top rectangle" id="getStartedButton" onclick="submitForm()"></div>
+  <!-- Get Started -->
+  <div class="left top button" id="buttonText" onclick="submitForm()">Login</div>
+  <!-- Lorem ipsum dolor sit amet, consectetur adipiscing elit -->
+  <!-- <div class="left top text" id="flavorText">Lorem ipsum dolor sit amet, consectetur adipiscing elit</div> -->
+  <!-- Grosh -->
+  <div class="left top text" id="mainTitle">Grosh</div>
+  <!-- 59bedb177a216d0b052f128a 1 -->
+  
+</div>
+
+<!-- partial -->
