@@ -31,7 +31,7 @@ app.use(session({
 app.use(express.static('public'));
 app.engine('hbs', hbs.engine);
 app.set('view engine', 'hbs');
-app.set('port', 10001);
+app.set('port', 3773);
 
 let cssFile;
 app.get(`/css/${cssFile}`, function(req,res){
@@ -52,6 +52,13 @@ app.get(`/img/${imgFile}`, function(req,res){
 app.get('/', function(req,res){
 	var context = {};
 	res.render('home', context);
+});
+
+app.get('/logout',function(req,res){
+	var context = {};
+	context.title = 'Logged Out';
+	context.script = ['login.js'];
+	res.render('login',context);
 });
 
 app.get('/login',function(req,res){
