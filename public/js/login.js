@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded',() =>{
+/*document.addEventListener('DOMContentLoaded',() =>{
     document.getElementById('loginButton').addEventListener('click',async event =>{
 	event.preventDefault();
 	let context = {};
@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded',() =>{
 		headers: {
 		    'Content-Type': 'application/json'
 		},
-		//	    redirect: 'follow', // manual, *follow, error
+		redirect: 'follow', // manual, *follow, error
 		//	    referrer: 'no-referrer', // no-referrer, *client
 		body: JSON.stringify(context) // body data type must match "Content-Type" header
 	    })
@@ -33,3 +33,4 @@ document.addEventListener('DOMContentLoaded',() =>{
 	
     });
 });
+*/

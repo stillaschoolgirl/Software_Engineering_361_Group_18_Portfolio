@@ -17,16 +17,18 @@
   </head>
   -->
 <div id="loginForm">
-  <form id="form_id">
+  <form id="form_id" method="POST" action="/login">
     <br>
-    <div id="feedbackDiv"></div>
+    {{#if invalidCredentials}}
+    <div id="feedbackDiv" style="color:red">Invalid login.</div>
+    {{/if}}
     <div id="loginItem">
       Email:
-      <input type="text" name="Email" id="username" placeholder="Example@email.com">
+      <input type="text" name="username" id="username" placeholder="Example@email.com">
     </div>
     <div id="loginItem">
       Password:
-      <input type="password" name="Password" id="password" placeholder="Password">
+      <input type="password" name="password" id="password" placeholder="Password">
     </div>
     <div id="loginItem">
       Password:
