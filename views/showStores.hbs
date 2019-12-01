@@ -1,0 +1,24 @@
+<table id="allStores">
+	<tr>
+		<th> Store Name </th>
+		<th> Address </th>
+		<th> City </th>
+		<th> State </th>
+		<th> Zipcode </th>
+		<th> Map Link </th>
+	</tr>
+	
+	{{#if results}}
+		{{#each results}}
+			<tr>
+				<td> {{this.name}} </td>
+				<td> {{this.address}} </td>
+				<td> {{this.city}} </td>
+				<td> {{this.state}} </td>
+				<td> {{this.zipcode}} </td>
+				<td> {{this.map_link}} </td>
+			</tr>
+		{{/each}}
+    {{/if}}
+	
+</table>

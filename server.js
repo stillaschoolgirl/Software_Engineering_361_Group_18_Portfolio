@@ -78,10 +78,108 @@ app.post('/login',function(req,res){
     });
 });
 
-app.get('/storeSearch', function(req, res){
+//to display page to search for store
+app.get('/storeSearch', function (req, res){
 	var context = {};
 	res.render('storeSearch', context);
 });
+
+//to show all stores existing in database
+app.get('/showAllStores', function(req, res){
+	var context = {};
+	var queryString = "Select * FROM stores";
+	mysql.pool.query(queryString, function(err, rows, fields){
+		if (err){
+			next(err);
+			return;
+		}
+		var params = [];
+		for (var row in rows){
+			var addStore = {
+				'name':rows[row].name,
+				'address':rows[row].address,
+				'city':rows[row].city,
+				'state':rows[row].state,
+				'zipcode':rows[row].zipcode,
+				'map_link':rows[row].map_link
+			};
+			params.push(addStore);
+		}
+		context.results = params;
+		res.render('showStores', context);
+	});
+});
+
+//to display page showing search results
+app.get('/storeSearchResults', function (req, res){
+	var context = {};
+	var andRequired = false;
+	var queryString = "SELECT * FROM stores WHERE ";
+	
+	//if name field was not empty
+	if(req.query.name != ""){
+		queryString += "name='" + req.query.name + "'";
+		andRequired = true;
+	}
+	
+	//if address field was not empty
+	if (req.query.address !=""){
+		if (andRequired){
+			queryString += " AND "
+		}
+		queryString += "address='" + req.query.address + "'";
+		andRequired = true;
+	}
+	
+	//if city field was not empty
+	if (req.query.city !=""){
+		if (andRequired){
+			queryString += " AND "
+		}
+		queryString += "city='" + req.query.city + "'";
+		andRequired = true;
+	}
+	
+	//if state field was not default
+	if (req.query.state !="0"){
+		if (andRequired){
+			queryString += " AND "
+		}
+		queryString += "state='" + req.query.state + "'";
+		andRequired = true;
+	}
+	
+	//if zipcode field was not empty 
+	if (req.query.zipcode !=""){
+		if (andRequired){
+			queryString += " AND "
+		}
+		queryString += "zipcode='" + req.query.zipcode + "'";
+		andRequired = true;
+	}
+	
+	mysql.pool.query(queryString, function(err, rows, fields){
+		if (err){
+			next(err);
+			return;
+		}
+		var params = [];
+		for (var row in rows){
+			var addStore = {
+				'name':rows[row].name,
+				'address':rows[row].address,
+				'city':rows[row].city,
+				'state':rows[row].state,
+				'zipcode':rows[row].zipcode,
+				'map_link':rows[row].map_link
+			};
+			params.push(addStore);
+		}
+		context.results = params;
+		res.render('showStores', context);
+	});
+});
+
 
 app.use(function(req,res){
   res.status(404);
