@@ -126,3 +126,13 @@ body > .frame {
 	#loginItem {
 		margin-top: 50px;
 	}
+	
+#linkBar{
+	font-size: 30px;
+	width: 1000px;
+}
+
+a.links{
+	padding-left: 30px;
+	padding-right: 30px;
+}
