@@ -1,7 +1,6 @@
 /* Title */
 #iphoneFrame {
-	width: 375px;
-	height: 812px;
+
 	overflow: hidden;
 }
  
@@ -70,14 +69,16 @@
 		text-shadow: 2px 2px  rgba(0, 0, 0, 0.25);
 		left: 94px;
 		top: 99px;
+		display:block;
+		margin-left: auto;
+		margin-right: auto;
 	}
  
 	/* 59bedb177a216d0b052f128a 1 */
 	#centerImage {
-		background-image: url("../../views/assets/groceryCart.png");
-		background-size: cover;
-		background-repeat: no-repeat;
-		background-position: center center;
+		display:block;
+		margin-left: auto;
+		margin-right: auto;
 		left: 36px;
 		width: 301px;
 		top: 219px;
@@ -126,11 +127,7 @@ body > .frame {
 	#loginItem {
 		margin-top: 50px;
 	}
-	
-#linkBar{
-	font-size: 30px;
-	width: 1000px;
-}
+
 
 a.links{
 	padding-left: 30px;
