@@ -70,12 +70,14 @@ app.get('/login',function(req,res){
 
 app.post('/login',function(req,res){
     let context = {};
-    let sql = `SELECT username,password FROM users WHERE username=?`;
+    let sql = `SELECT id,username,password FROM users WHERE username=?`;
     let values = req.body.username;
 
     mysql.pool.query(sql,values,(err,results) => {
 
 	if(results && results[0] && results[0].password === req.body.password){
+	    req.session.loggedIn = true;
+	    req.session.userId = results[0].id;
 	    res.redirect('/storeSearch');
 	}
 	else{
@@ -90,6 +92,20 @@ app.get('/storeSearch', function (req, res){
 	var context = {};
 	res.render('storeSearch', context);
 });
+app.get('productSearch',(req,res) => {
+    let context = {};
+    let wildcard = `%${req.query.searchTerm}%`;
+    let sql = `SELECT * FROM products WHERE product_name=?`;
+    let values = [wildcard];
+    mysql.pool.query(sql,values,(err, results, fields) => {
+	if (err){
+	    next(err);
+	    return;
+	}
+	res.send(results);
+    });
+});
+
 
 //to show all stores existing in database
 app.get('/showAllStores', function(req, res){
