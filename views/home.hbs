@@ -1,25 +1,24 @@
 <body>
+  <div class="left top component" id="iphoneFrame">
+    <div id= "linkBar">
+      {{#if loggedIn}}
+      <a href="/logout" class="links"> <div> Log Out </div> </a>
+      {{else}}
+      <a href="/login" class="links"> <div> Log In </div> </a>
+      {{/if}}      
+      <a href="/storeSearch" class="links"> <div> Store Search </div> </a>
+      <a href="/showAllStores" class="links"> <div> All Stores </div> </a>
+      <a href="/buildList" class="links"> <div> Create List </div> </a>
+    </div>
 
+    <!-- Grosh -->
+    <div class="left top text" id="mainTitle">Grosh </div>
 
+    <!-- Shopping cart image -->
+    <picture>
+      <img src="/pictures/groceryCart.png" id="centerImage" />
+    </picture>
 
-	<div class="left top component" id="iphoneFrame">
-		<div id= "linkBar">
-			<a href="/login" class="links"> <div> Log In </div> </a>
-			<a href="/storeSearch" class="links"> <div> Store Search </div> </a>
-			<a href="/showAllStores" class="links"> <div> All Stores </div> </a>
-		</div>
-
-		<!-- Grosh -->
-		<div class="left top text" id="mainTitle">Grosh </div>
-
-		<!-- Shopping cart image -->
-		<picture>
-				<img src="/pictures/groceryCart.png" id="centerImage" />
-		</picture>
-		
-	</div>
-
-
-	
+  </div>	
 </body>
 
