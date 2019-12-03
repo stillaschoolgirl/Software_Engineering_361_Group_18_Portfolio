@@ -1,0 +1,14 @@
+<a class="linkRef" href="./storeSearch" id="navLink">Back to Search </a>&nbsp<a class="linkRef" href="./logout" id="navLink"> Logout</a>
+
+<form id="addItem" action="/buildList" method="GET">
+	<input type="text" name="name" id="newItem">
+	<input type="submit" value="submit" name="submit">
+</form>
+<br>
+<br>
+<h3>The Current List<h3>
+<ul id="currentList">
+	{{#each queryList}}
+		<li> {{this.value}} </li>
+	{{/each}}
+</ul>
