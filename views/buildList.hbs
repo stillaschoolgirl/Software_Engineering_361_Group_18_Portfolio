@@ -1,0 +1,27 @@
+<div class="container">
+  <a class="linkRef" href="/" id="navLink">Back to Home</a>&nbsp
+  {{#if loggedIn}}
+  <a class="linkRef" href="/logout" id="navLink"> Logout</a>
+  {{/if}}
+  <div class="row justify-content-around">
+    <div class="col-12 col-md-6">
+      <div class="input-group">
+	<input type="text" class="form-control" id="searchQuery" placeholder="Search for items">
+	<div class="input-group-append">
+	  <button class="btn btn-success">Add</button>
+	</div>
+      </div>
+      <div id="searchNameList" style="max-height:200px;overflow:auto;"></div>
+    </div>
+    <div class="col-12 col-md-6">
+      <div class="row groceryList"></div>
+      <div class="input-group">
+	<input type="text" class="form-control" id="listName" placeholder="Name your list" style="max-width:300px">
+	<div class="input-group-append">
+	  <button class="btn btn-primary" id="saveList">Save List</button>
+	</div>
+      </div>
+      <div id="feedbackDiv"></div>
+    </div>
+  </div>
+</div>

@@ -28,7 +28,9 @@ app.use(session({
         maxAge: 600 * 100000
     }
 }));
+app.use(bodyParser.raw());
 app.use(express.static('public'));
+//app.use(express.static(path.join(__dirname, '/public'));
 app.engine('hbs', hbs.engine);
 app.set('view engine', 'hbs');
 app.set('port', 3773);
@@ -50,8 +52,10 @@ app.get(`/img/${imgFile}`, function(req,res){
 });
 
 app.get('/', function(req,res){
-	var context = {};
-	res.render('home', context);
+    var context = {};
+    context.loggedIn = req.session.loggedIn;
+    context.css = ['style.css'];
+    res.render('home', context);
 });
 
 app.get('/logout',function(req,res){
@@ -65,6 +69,7 @@ app.get('/login',function(req,res){
     var context = {};
     context.title = 'Login page';
     context.script = ['login.js'];
+    context.css = ["style.css"];
     res.render('login',context);
 });
 
@@ -82,6 +87,8 @@ app.post('/login',function(req,res){
 	}
 	else{
 	    context.invalidCredentials = true;
+	    context.css = ['style.css'];
+	    context.script = ['login.js'];
 	    res.render('login',context);
 	}
     });
@@ -89,14 +96,14 @@ app.post('/login',function(req,res){
 
 //to display page to search for store
 app.get('/storeSearch', function (req, res){
-	var context = {};
-	res.render('storeSearch', context);
+    var context = {};
+    context.css = ['style.css'];
+    res.render('storeSearch', context);
 });
-app.get('productSearch',(req,res) => {
+app.get('/productSearch',(req,res) => {
     let context = {};
-    let wildcard = `%${req.query.searchTerm}%`;
-    let sql = `SELECT * FROM products WHERE product_name=?`;
-    let values = [wildcard];
+    let sql = `SELECT * FROM products WHERE product_name LIKE ?`;
+    let values = [`%${req.query.searchQuery}%`];
     mysql.pool.query(sql,values,(err, results, fields) => {
 	if (err){
 	    next(err);
@@ -105,7 +112,57 @@ app.get('productSearch',(req,res) => {
 	res.send(results);
     });
 });
-
+app.get('/buildList',(req,res) => {
+    var context = {};
+//    context.loggedIn = req.session.loggedIn;
+    context.title = 'Create Shopping List';
+    context.script = ['buildList.js'];
+    context.css = ['buildList.css'];
+    console.log(context);
+    res.render('buildList',context);
+});
+app.get('/getAllDepartments',(req,res) => {
+    var context = {};
+    let sql = `SELECT * FROM departments`;
+    mysql.pool.query(sql,null,(err, results, fields) => {
+	if (err){
+	    next(err);
+	    return;
+	}
+	res.send(results);
+    });
+});
+app.post('/saveList',(req,res) => {
+    var context = {};
+    let sql = `INSERT INTO lists (userid,listname,num_items) VALUES (?,?,?)`;
+    let values = [
+	req.session.loggedIn ? req.session.userId : 0,
+	req.body.listName,
+	req.body.list.length
+    ];
+    new Promise((resolve,reject) => 
+		mysql.pool.query(sql,values,(err, res, fields) => err ? reject(err) : resolve(res))
+    )
+	.then((results) => {
+	    let listResults = [];
+	    sql = `INSERT INTO lists_products (list_id,product_id) VALUES (?,?)`;
+	    req.body.list.forEach(item => {
+		values = [results.insertId,item.id];
+		console.log(sql);
+		console.log(values);
+		listResults.push(new Promise((resolve,reject) =>
+		    mysql.pool.query(sql,values,(err,res) => err ? reject(err) : resolve(res))
+		));
+	    });
+	    Promise.all(listResults)
+		.then(() => res.send(context.success = true))
+		.catch((err) => res.send(context.success = false));
+	})
+	.catch((err) => {
+	    console.log(err);
+	    res.send(context.success = false);
+	})
+});
 
 //to show all stores existing in database
 app.get('/showAllStores', function(req, res){
@@ -129,6 +186,7 @@ app.get('/showAllStores', function(req, res){
 			params.push(addStore);
 		}
 		context.results = params;
+	    context.css = ['style.css'];
 		res.render('showStores', context);
 	});
 });
@@ -199,6 +257,7 @@ app.get('/storeSearchResults', function (req, res){
 			params.push(addStore);
 		}
 		context.results = params;
+	    context.css = ['style.css'];
 		res.render('showStores', context);
 	});
 });
