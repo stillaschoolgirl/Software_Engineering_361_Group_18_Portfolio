@@ -33,7 +33,7 @@ app.use(express.static('public'));
 //app.use(express.static(path.join(__dirname, '/public'));
 app.engine('hbs', hbs.engine);
 app.set('view engine', 'hbs');
-app.set('port', 3773);
+app.set('port', 5583);
 
 let cssFile;
 app.get(`/css/${cssFile}`, function(req,res){
@@ -50,6 +50,8 @@ app.get(`/img/${imgFile}`, function(req,res){
     res.send(`/img/${imgFile}`);
     res.end();
 });
+
+var globalList = [];
 
 app.get('/', function(req,res){
     var context = {};
@@ -262,6 +264,18 @@ app.get('/storeSearchResults', function (req, res){
 	});
 });
 
+//To build a list
+app.get('/buildList', function(req, res){
+    for (var p in req.query) {
+		if ( req.query[p] != 'submit'){
+         globalList.push({ name: p, value: req.query[p] });
+		}
+    }
+	console.log(globalList);
+    var fill = {};
+    fill.queryList = globalList;
+    res.render('buildList', fill);
+});
 
 app.use(function(req,res){
   res.status(404);
