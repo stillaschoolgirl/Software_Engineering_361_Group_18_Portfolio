@@ -10,7 +10,8 @@ if (validButton){
 			"&address="+storeInfo.elements.address.value +
 			"&city="+storeInfo.elements.city.value +
 			"&state="+storeInfo.elements.state.value +
-			"&zipcode="+storeInfo.elements.zipcode.value;	
+			"&zipcode="+storeInfo.elements.zipcode.value +
+			"&map="+storeInfo.elements.map.value;	
 
 		req.open("GET", "/storeSearchResults?" + parameters, true);
 		req.setRequestHeader('Content-Type','application/x-www-form-urlencoded');

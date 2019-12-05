@@ -182,13 +182,13 @@ app.get('/showAllStores', function(req, res){
 				'address':rows[row].address,
 				'city':rows[row].city,
 				'state':rows[row].state,
-				'zipcode':rows[row].zipcode,
-				'map_link':rows[row].map_link
-			};
+				'zipcode':rows[row].zipcode
+				};
 			params.push(addStore);
 		}
 		context.results = params;
-	    context.css = ['style.css'];
+	        context.css = ['style.css'];
+		context.script = ['mapLinks.js'];
 		res.render('showStores', context);
 	});
 });
