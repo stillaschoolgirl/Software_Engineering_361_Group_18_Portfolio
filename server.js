@@ -61,10 +61,11 @@ app.get('/', function(req,res){
 });
 
 app.get('/logout',function(req,res){
-	var context = {};
-	context.title = 'Logged Out';
-	context.script = ['login.js'];
-	res.render('login',context);
+    var context = {};
+    context.title = 'Logged Out';
+    context.script = ['login.js'];
+    context.css = ['style.css'];
+    res.render('login',context);
 });
 
 app.get('/login',function(req,res){
