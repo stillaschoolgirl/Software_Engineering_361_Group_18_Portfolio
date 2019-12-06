@@ -65,6 +65,7 @@ app.get('/logout',function(req,res){
     context.title = 'Logged Out';
     context.script = ['login.js'];
     context.css = ['style.css'];
+    req.session.destroy();
     res.render('login',context);
 });
 
